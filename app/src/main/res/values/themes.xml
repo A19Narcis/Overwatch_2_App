@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Overwatch2App" parent="Base.Theme.Overwatch2App" />
+
+    <!-- Define un nuevo estilo para el SearchView -->
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Desactiva la línea inferior -->
+        <item name="android:queryBackground">@android:color/transparent</item>
+        <!-- Otras personalizaciones si las necesitas -->
+    </style>
 </resources>
