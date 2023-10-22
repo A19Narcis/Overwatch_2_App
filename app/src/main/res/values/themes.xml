@@ -11,6 +11,7 @@
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <!-- Desactiva la línea inferior -->
         <item name="android:queryBackground">@android:color/transparent</item>
-        <!-- Otras personalizaciones si las necesitas -->
+
     </style>
+
 </resources>
