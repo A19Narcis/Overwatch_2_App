@@ -2,4 +2,12 @@
     <string name="app_name">Overwatch 2 App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_heroes">All Heroes</string>
+    <string name="tanks">Tanks</string>
+    <string name="damage">Damage</string>
+    <string name="support">Support</string>
+    <string name="heroes">Heroes</string>
+    <string name="ashe">Ashe</string>
+    <string name="image_descr">Image Descr</string>
+    <string name="tank">Tank</string>
 </resources>
