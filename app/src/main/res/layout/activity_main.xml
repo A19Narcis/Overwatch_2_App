@@ -20,6 +20,7 @@
         android:id="@+id/bottomNavView"
         android:layout_width="0dp"
         app:menu="@menu/bottom_nav"
+        app:itemIconSize="@dimen/bottom_navigation_icon_size"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
