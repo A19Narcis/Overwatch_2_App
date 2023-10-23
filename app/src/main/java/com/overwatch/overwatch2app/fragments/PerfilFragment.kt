@@ -39,12 +39,10 @@ class PerfilFragment : Fragment() {
         userCard = root?.findViewById(R.id.userNameCard)
 
         searchView = root?.findViewById(R.id.searchView)
-        var perfilBuscado : String
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    perfilBuscado = query
                     getUserInfo(query)
                 } else {
                     Toast.makeText(requireContext(), "El campo de búsqueda está vacío", Toast.LENGTH_SHORT).show()
@@ -73,7 +71,7 @@ class PerfilFragment : Fragment() {
 
         val service = retrofit.create(ApiService::class.java)
 
-        service.getInfo(userId).enqueue(object : Callback<JsonObject> {
+        service.getInfoUsers(userId).enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if (response.isSuccessful){
                     val jsonObject = response.body()
@@ -91,12 +89,8 @@ class PerfilFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                Log.i("CHECK_RESPONSE", t.toString())
+                Log.i("CHECK_RESPONSE_FAIL", t.toString())
             }
         })
-    }
-
-    private fun initRecyclerView() {
-
     }
 }

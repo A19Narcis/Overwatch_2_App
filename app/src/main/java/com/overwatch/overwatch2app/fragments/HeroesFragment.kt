@@ -1,7 +1,7 @@
 package com.overwatch.overwatch2app.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +11,23 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.JsonArray
 import com.overwatch.overwatch2app.R
 import com.overwatch.overwatch2app.adapters.HeroesAdapter
+import com.overwatch.overwatch2app.api.ApiService
 import com.overwatch.overwatch2app.models.Hero
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HeroesFragment : Fragment() {
 
+    // Preparamos todas las variables
     private var root : View? = null
 
-    //private val baseURL = "https://overfast-api.tekrop.fr/"
+    private val baseURL = "https://overfast-api.tekrop.fr/"
 
     private var heroesTV : TextView? = null
     private var selectionRoleGroup : RadioGroup? = null
@@ -29,10 +37,17 @@ class HeroesFragment : Fragment() {
     private var supportRButton : RadioButton? = null
     private var recyclerViewHeroes : RecyclerView? = null
 
-    private var heroList : ArrayList<Hero>? = null
+    private var allHeroList : ArrayList<Hero>? = null
+    private var tankHeroList : ArrayList<Hero>? = null
+    private var damageHeroList : ArrayList<Hero>? = null
+    private var supportHeroList : ArrayList<Hero>? = null
+
     private var adapter : HeroesAdapter? = null
 
-
+    // Iniciamos la llamada GET para los heroes
+    init {
+        getHeroesInfo()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.fragment_heroes, container, false)
@@ -48,58 +63,108 @@ class HeroesFragment : Fragment() {
 
         recyclerViewHeroes = root?.findViewById(R.id.hereosRecycleView)
 
-        heroList = ArrayList()
-        adapter = HeroesAdapter(requireContext(), heroList)
+        // Indicamos las columnas de nuestro RecycleView
+        val layoutManager = GridLayoutManager(requireContext(), 3)
+        recyclerViewHeroes?.layoutManager = layoutManager
 
+        //Marcamos por defecto el campo de "All Heroes"
         allRButton?.isChecked = true
-        showAllHeroes()
 
+        // Dependiendo de que filtro selecciones se actualiza el RecycleView
         selectionRoleGroup?.setOnCheckedChangeListener { _, checkedId: Int ->
             when (checkedId) {
                 R.id.allHeroesRButton -> {
                     showAllHeroes()
                 }
                 R.id.tankRButton -> {
-                    clearRecycleView()
+                    showTankHeroes()
                 }
                 R.id.damageRButton -> {
-                    clearRecycleView()
+                    showDamageHeroes()
                 }
                 R.id.supportRButton -> {
-                    clearRecycleView()
+                    showSupportHeroes()
                 }
             }
         }
-
         return root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun clearRecycleView() {
-        adapter?.clearData()
-        adapter?.notifyDataSetChanged()
+    // Llamada para obtener todos los hereos
+    private fun getHeroesInfo(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(baseURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(ApiService::class.java)
+
+        service.getInfoHeroes().enqueue(object : Callback<JsonArray> {
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
+                if (response.isSuccessful){
+                    val jsonArray = response.body()
+                    val heroesArray = jsonArray?.asJsonArray
+
+                    if (heroesArray != null) {
+
+                        //Inicializamos todas las array para prepararlas para los filtros
+                        allHeroList = ArrayList()
+                        tankHeroList = ArrayList()
+                        damageHeroList = ArrayList()
+                        supportHeroList = ArrayList()
+
+                        for (hero in heroesArray) {
+                            val jsonObject = hero.asJsonObject
+
+                            val key = jsonObject.get("key").asString
+                            val name = jsonObject.get("name").asString
+                            val portrait = jsonObject.get("portrait").asString
+                            val role = jsonObject.get("role").asString
+
+                            val heroInfo = Hero(key, name, portrait, role)
+
+                            //Añadimos lo hereos en las 4 listas diferentes dependiendo del tipo de filtro
+                            allHeroList?.add(heroInfo)
+                            when (heroInfo.role) {
+                                "tank" -> {
+                                    tankHeroList!!.add(heroInfo)
+                                }
+                                "damage" -> {
+                                    damageHeroList!!.add(heroInfo)
+                                }
+                                "support" -> {
+                                    supportHeroList!!.add(heroInfo)
+                                }
+                            }
+                        }
+                        // Ejecutamos el adapter para que cargue el contenido al entrar en el fragment
+                        runAdapter(allHeroList!!)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+                Log.i("CHECK_RESPONSE_FAIL", t.toString())
+            }
+        })
     }
 
-    private fun showAllHeroes() {
-        val key = "ashe"
-        val name = "Ashe"
-        val portrait = "https://d15f34w2p8l1cc.cloudfront.net/overwatch/3429c394716364bbef802180e9763d04812757c205e1b4568bc321772096ed86.png"
-        val role = "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/bltc1d840ba007f88a8/62ea89572fdd1011027e605d/Damage.svg"
-
-        val hero1 = Hero(key, name, portrait, role)
-
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-        heroList?.add(hero1)
-
-        val layoutManager = GridLayoutManager(requireContext(), 3)
-        recyclerViewHeroes?.layoutManager = layoutManager
-
+    // Metodo que se ejecuta cada vez que se quiere actualizar el RecycleView
+    private fun runAdapter(heroList : ArrayList<Hero>?) {
+        adapter = HeroesAdapter(requireContext(), heroList!!)
         recyclerViewHeroes!!.adapter = adapter
+    }
+
+    // Metodos para aplicar los filtros
+    private fun showAllHeroes() {
+        runAdapter(allHeroList)
+    }
+    private fun showTankHeroes() {
+        runAdapter(tankHeroList)
+    }
+    private fun showDamageHeroes() {
+        runAdapter(damageHeroList)
+    }
+    private fun showSupportHeroes() {
+        runAdapter(supportHeroList)
     }
 }
