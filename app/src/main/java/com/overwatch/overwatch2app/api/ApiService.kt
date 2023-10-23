@@ -10,10 +10,14 @@ interface ApiService {
 
     //Get usuario
     @GET("players/{playerId}/")
-    fun getInfoUsers(@Path("playerId") playerId: String) : Call<JsonObject>
+    fun getInfoUsers(@Path("playerId") playerId: String): Call<JsonObject>
 
     //Get heroes
     @GET("heroes/")
-    fun getInfoHeroes() : Call<JsonArray>
+    fun getInfoHeroes(): Call<JsonArray>
+
+    //Get un hero
+    @GET("heroes/{hero_key}/")
+    fun getInfoOneHero(@Path("heroKey") heroKey: String): Call<JsonObject>
 
 }

@@ -15,7 +15,7 @@ import com.google.gson.JsonArray
 import com.overwatch.overwatch2app.R
 import com.overwatch.overwatch2app.adapters.HeroesAdapter
 import com.overwatch.overwatch2app.api.ApiService
-import com.overwatch.overwatch2app.models.Hero
+import com.overwatch.overwatch2app.models.HeroList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,20 +29,20 @@ class HeroesFragment : Fragment() {
 
     private val baseURL = "https://overfast-api.tekrop.fr/"
 
-    private var heroesTV : TextView? = null
-    private var selectionRoleGroup : RadioGroup? = null
-    private var allRButton : RadioButton? = null
-    private var tankRButton : RadioButton? = null
-    private var damageRButton : RadioButton? = null
-    private var supportRButton : RadioButton? = null
-    private var recyclerViewHeroes : RecyclerView? = null
+    private var heroesTV: TextView? = null
+    private var selectionRoleGroup: RadioGroup? = null
+    private var allRButton: RadioButton? = null
+    private var tankRButton: RadioButton? = null
+    private var damageRButton: RadioButton? = null
+    private var supportRButton: RadioButton? = null
+    private var recyclerViewHeroes: RecyclerView? = null
 
-    private var allHeroList : ArrayList<Hero>? = null
-    private var tankHeroList : ArrayList<Hero>? = null
-    private var damageHeroList : ArrayList<Hero>? = null
-    private var supportHeroList : ArrayList<Hero>? = null
+    private var allHeroListList: ArrayList<HeroList>? = null
+    private var tankHeroListList: ArrayList<HeroList>? = null
+    private var damageHeroListList: ArrayList<HeroList>? = null
+    private var supportHeroListList: ArrayList<HeroList>? = null
 
-    private var adapter : HeroesAdapter? = null
+    private var adapter: HeroesAdapter? = null
 
     // Iniciamos la llamada GET para los heroes
     init {
@@ -108,10 +108,10 @@ class HeroesFragment : Fragment() {
                     if (heroesArray != null) {
 
                         //Inicializamos todas las array para prepararlas para los filtros
-                        allHeroList = ArrayList()
-                        tankHeroList = ArrayList()
-                        damageHeroList = ArrayList()
-                        supportHeroList = ArrayList()
+                        allHeroListList = ArrayList()
+                        tankHeroListList = ArrayList()
+                        damageHeroListList = ArrayList()
+                        supportHeroListList = ArrayList()
 
                         for (hero in heroesArray) {
                             val jsonObject = hero.asJsonObject
@@ -121,24 +121,24 @@ class HeroesFragment : Fragment() {
                             val portrait = jsonObject.get("portrait").asString
                             val role = jsonObject.get("role").asString
 
-                            val heroInfo = Hero(key, name, portrait, role)
+                            val heroListInfo = HeroList(key, name, portrait, role)
 
                             //Añadimos lo hereos en las 4 listas diferentes dependiendo del tipo de filtro
-                            allHeroList?.add(heroInfo)
-                            when (heroInfo.role) {
+                            allHeroListList?.add(heroListInfo)
+                            when (heroListInfo.role) {
                                 "tank" -> {
-                                    tankHeroList!!.add(heroInfo)
+                                    tankHeroListList!!.add(heroListInfo)
                                 }
                                 "damage" -> {
-                                    damageHeroList!!.add(heroInfo)
+                                    damageHeroListList!!.add(heroListInfo)
                                 }
                                 "support" -> {
-                                    supportHeroList!!.add(heroInfo)
+                                    supportHeroListList!!.add(heroListInfo)
                                 }
                             }
                         }
                         // Ejecutamos el adapter para que cargue el contenido al entrar en el fragment
-                        runAdapter(allHeroList!!)
+                        runAdapter(allHeroListList!!)
                     }
                 }
             }
@@ -149,22 +149,22 @@ class HeroesFragment : Fragment() {
     }
 
     // Metodo que se ejecuta cada vez que se quiere actualizar el RecycleView
-    private fun runAdapter(heroList : ArrayList<Hero>?) {
+    private fun runAdapter(heroList: ArrayList<HeroList>?) {
         adapter = HeroesAdapter(requireContext(), heroList!!)
         recyclerViewHeroes!!.adapter = adapter
     }
 
     // Metodos para aplicar los filtros
     private fun showAllHeroes() {
-        runAdapter(allHeroList)
+        runAdapter(allHeroListList)
     }
     private fun showTankHeroes() {
-        runAdapter(tankHeroList)
+        runAdapter(tankHeroListList)
     }
     private fun showDamageHeroes() {
-        runAdapter(damageHeroList)
+        runAdapter(damageHeroListList)
     }
     private fun showSupportHeroes() {
-        runAdapter(supportHeroList)
+        runAdapter(supportHeroListList)
     }
 }

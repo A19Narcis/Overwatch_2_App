@@ -12,9 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.overwatch.overwatch2app.R
-import com.overwatch.overwatch2app.models.Hero
+import com.overwatch.overwatch2app.models.HeroList
 
-class HeroesAdapter(private val context:Context, private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HeroesAdapter(private val context:Context, private val heroList: ArrayList<HeroList>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
         return HeroViewHolder(LayoutInflater.from(context).inflate(R.layout.hero_item, parent, false))
     }
@@ -22,9 +22,9 @@ class HeroesAdapter(private val context:Context, private val heroList: ArrayList
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val heroL : Hero = heroList[position]
+        val heroListL: HeroList = heroList[position]
         if (holder is HeroViewHolder) {
-            binding(holder, heroL)
+            binding(holder, heroListL)
         }
     }
 
@@ -35,23 +35,22 @@ class HeroesAdapter(private val context:Context, private val heroList: ArrayList
     class HeroViewHolder(binding: View): RecyclerView.ViewHolder(binding)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun binding(holder: RecyclerView.ViewHolder, heroL : Hero) {
+    private fun binding(holder: RecyclerView.ViewHolder, heroListL: HeroList) {
         val heroRole: ImageView = holder.itemView.findViewById(R.id.roleIV)
         val heroPortrait: ImageView = holder.itemView.findViewById(R.id.heroPortraitIV)
         val heroName: TextView = holder.itemView.findViewById(R.id.heroNameTV)
 
-        if (heroL.role.contains("tank")){
+        if (heroListL.role.contains("tank")){
             heroRole.setImageResource(R.drawable.tank_role)
-        } else if (heroL.role.contains("damage")) {
+        } else if (heroListL.role.contains("damage")) {
             heroRole.setImageResource(R.drawable.damage_role)
-        } else if (heroL.role.contains("support")) {
+        } else if (heroListL.role.contains("support")) {
             heroRole.setImageResource(R.drawable.support_role)
         }
 
-        heroPortrait.let { Glide.with(context).load(heroL.portrait).into(it) }
+        heroPortrait.let { Glide.with(context).load(heroListL.portrait).into(it) }
 
-        heroName.text = heroL.name
-
+        heroName.text = heroListL.name
 
         // Ajusta el texto automaticamente dependiendo del tamaño del textView
         val min = 6
