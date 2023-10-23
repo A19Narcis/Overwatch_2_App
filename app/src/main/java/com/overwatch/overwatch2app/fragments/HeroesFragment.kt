@@ -15,7 +15,7 @@ import com.google.gson.JsonArray
 import com.overwatch.overwatch2app.R
 import com.overwatch.overwatch2app.adapters.HeroesAdapter
 import com.overwatch.overwatch2app.api.ApiService
-import com.overwatch.overwatch2app.models.HeroList
+import com.overwatch.overwatch2app.models.Hero.HeroList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,12 +37,12 @@ class HeroesFragment : Fragment() {
     private var supportRButton: RadioButton? = null
     private var recyclerViewHeroes: RecyclerView? = null
 
-    private var allHeroListList: ArrayList<HeroList>? = null
-    private var tankHeroListList: ArrayList<HeroList>? = null
-    private var damageHeroListList: ArrayList<HeroList>? = null
-    private var supportHeroListList: ArrayList<HeroList>? = null
+    private var allHeroList: ArrayList<HeroList>? = null
+    private var tankHeroList: ArrayList<HeroList>? = null
+    private var damageHeroList: ArrayList<HeroList>? = null
+    private var supportHeroList: ArrayList<HeroList>? = null
 
-    private var adapter: HeroesAdapter? = null
+    private var heroAdapter: HeroesAdapter? = null
 
     // Iniciamos la llamada GET para los heroes
     init {
@@ -54,7 +54,7 @@ class HeroesFragment : Fragment() {
 
         heroesTV = root?.findViewById(R.id.heroesTextView)
 
-        selectionRoleGroup = root?.findViewById(R.id.seleciotnRGroup)
+        selectionRoleGroup = root?.findViewById(R.id.selectionRGroup)
 
         allRButton = root?.findViewById(R.id.allHeroesRButton)
         tankRButton = root?.findViewById(R.id.tankRButton)
@@ -91,7 +91,7 @@ class HeroesFragment : Fragment() {
     }
 
     // Llamada para obtener todos los hereos
-    private fun getHeroesInfo(){
+    private fun getHeroesInfo() {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -108,10 +108,10 @@ class HeroesFragment : Fragment() {
                     if (heroesArray != null) {
 
                         //Inicializamos todas las array para prepararlas para los filtros
-                        allHeroListList = ArrayList()
-                        tankHeroListList = ArrayList()
-                        damageHeroListList = ArrayList()
-                        supportHeroListList = ArrayList()
+                        allHeroList = ArrayList()
+                        tankHeroList = ArrayList()
+                        damageHeroList = ArrayList()
+                        supportHeroList = ArrayList()
 
                         for (hero in heroesArray) {
                             val jsonObject = hero.asJsonObject
@@ -124,21 +124,21 @@ class HeroesFragment : Fragment() {
                             val heroListInfo = HeroList(key, name, portrait, role)
 
                             //Añadimos lo hereos en las 4 listas diferentes dependiendo del tipo de filtro
-                            allHeroListList?.add(heroListInfo)
+                            allHeroList?.add(heroListInfo)
                             when (heroListInfo.role) {
                                 "tank" -> {
-                                    tankHeroListList!!.add(heroListInfo)
+                                    tankHeroList!!.add(heroListInfo)
                                 }
                                 "damage" -> {
-                                    damageHeroListList!!.add(heroListInfo)
+                                    damageHeroList!!.add(heroListInfo)
                                 }
                                 "support" -> {
-                                    supportHeroListList!!.add(heroListInfo)
+                                    supportHeroList!!.add(heroListInfo)
                                 }
                             }
                         }
                         // Ejecutamos el adapter para que cargue el contenido al entrar en el fragment
-                        runAdapter(allHeroListList!!)
+                        runAdapter(allHeroList!!)
                     }
                 }
             }
@@ -150,21 +150,21 @@ class HeroesFragment : Fragment() {
 
     // Metodo que se ejecuta cada vez que se quiere actualizar el RecycleView
     private fun runAdapter(heroList: ArrayList<HeroList>?) {
-        adapter = HeroesAdapter(requireContext(), heroList!!)
-        recyclerViewHeroes!!.adapter = adapter
+        heroAdapter = HeroesAdapter(requireContext(), heroList!!)
+        recyclerViewHeroes!!.adapter = heroAdapter
     }
 
     // Metodos para aplicar los filtros
     private fun showAllHeroes() {
-        runAdapter(allHeroListList)
+        runAdapter(allHeroList)
     }
     private fun showTankHeroes() {
-        runAdapter(tankHeroListList)
+        runAdapter(tankHeroList)
     }
     private fun showDamageHeroes() {
-        runAdapter(damageHeroListList)
+        runAdapter(damageHeroList)
     }
     private fun showSupportHeroes() {
-        runAdapter(supportHeroListList)
+        runAdapter(supportHeroList)
     }
 }

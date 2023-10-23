@@ -1,4 +1,4 @@
-package com.overwatch.overwatch2app.models
+package com.overwatch.overwatch2app.models.Hero
 
 data class HeroList (
     var key :String,

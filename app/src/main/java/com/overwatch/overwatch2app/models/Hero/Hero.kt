@@ -1,5 +1,6 @@
 package com.overwatch.overwatch2app.models.Hero
 
+import com.google.gson.JsonArray
 import com.overwatch.overwatch2app.models.Hero.HeroStory.HeroStory
 
 data class Hero(
@@ -9,7 +10,7 @@ data class Hero(
     val role: String,
     val location: String,
     val hitpoints: HeroHitpoints,
-    val abilities: ArrayList<HeroAbilities>,
+    val abilities: JsonArray,
     val story: HeroStory
 )
 

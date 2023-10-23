@@ -10,4 +10,13 @@
     <string name="ashe">Ashe</string>
     <string name="image_descr">Image Descr</string>
     <string name="tank">Tank</string>
+    <string name="mapas">MAPAS</string>
+    <string name="modos">MODOS</string>
+    <string name="image_desc">Image Desc</string>
+    <string name="king_s_row">KING\'S ROW</string>
+    <string name="london">London</string>
+    <string name="uk">UK</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="hybrid2">Hybrid</string>
+    <string name="mapas_y_modos">Mapas y Modos</string>
 </resources>

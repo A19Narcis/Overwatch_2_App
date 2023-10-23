@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp">
+
+    <com.santalu.diagonalimageview.DiagonalImageView
+        android:id="@+id/modeMapIV3"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/midtown"
+        app:di_borderColor="@color/black"
+        app:di_borderEnabled="false"
+        app:di_borderSize="3dp"
+        app:di_distance="30dp"
+        app:di_end="top"
+        app:di_start="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.santalu.diagonalimageview.DiagonalImageView
+        android:id="@+id/modeMapIV2"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="90dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/kings_row"
+        app:di_borderColor="@color/black"
+        app:di_borderEnabled="true"
+        app:di_borderSize="2dp"
+        app:di_distance="30dp"
+        app:di_end="top"
+        app:di_start="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.santalu.diagonalimageview.DiagonalImageView
+        android:id="@+id/modeMapIV1"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/paraiso"
+        app:di_borderColor="@color/black"
+        app:di_borderEnabled="true"
+        app:di_borderSize="2dp"
+        app:di_distance="30dp"
+        app:di_end="top"
+        app:di_start="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+    <com.santalu.diagonalimageview.DiagonalImageView
+        android:id="@+id/modeMapIV0"
+        android:layout_width="30dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="270dp"
+        android:scaleType="centerCrop"
+        android:src="@color/light_grey"
+        app:di_borderColor="@color/light_grey"
+        app:di_borderEnabled="false"
+        app:di_borderSize="3dp"
+        app:di_distance="30dp"
+        app:di_end="top"
+        app:di_start="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/modeNameCL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modeMapIV0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/modeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/hybrid2"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/modeIV"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/heroes"
+            app:layout_constraintEnd_toEndOf="@+id/modeTV"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/modeTV"
+            app:layout_constraintTop_toBottomOf="@+id/modeTV"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

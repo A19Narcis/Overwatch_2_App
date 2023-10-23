@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/seleciotnRGroup"
+        android:id="@+id/selectionRGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -65,9 +65,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/seleciotnRGroup"
-        app:layout_constraintStart_toStartOf="@+id/seleciotnRGroup"
-        app:layout_constraintTop_toBottomOf="@+id/seleciotnRGroup"
+        app:layout_constraintEnd_toEndOf="@+id/selectionRGroup"
+        app:layout_constraintStart_toStartOf="@+id/selectionRGroup"
+        app:layout_constraintTop_toBottomOf="@+id/selectionRGroup"
         tools:listitem="@layout/hero_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
