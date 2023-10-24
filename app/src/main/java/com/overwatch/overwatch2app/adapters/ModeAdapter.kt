@@ -129,8 +129,8 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
 
         // Ajusta el texto automaticamente dependiendo del tamaño del textView
         val min = 10
-        val max = 30
-        val step = 2
+        val max = 26
+        val step = 4
 
         modeTV.setAutoSizeTextTypeUniformWithConfiguration(min, max, step, TypedValue.COMPLEX_UNIT_SP)
     }
