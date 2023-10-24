@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".PerfilDetails">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/userToolBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:background="#EC7A25"
+        app:titleTextColor="@color/white"
+        android:layout_height="?attr/actionBarSize" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userToolBar"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/CL_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/userImageDetails"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/image_desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:src="@drawable/search" />
+
+            <ImageView
+                android:id="@+id/userNameCardDetails"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/image_desc"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="@+id/userImageDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/userImageDetails"
+                app:layout_constraintTop_toTopOf="@id/userImageDetails"
+                tools:ignore="ImageContrastCheck"
+                tools:src="@drawable/search" />
+
+            <TextView
+                android:id="@+id/profileStatusTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/userImageDetails"
+                app:layout_constraintTop_toBottomOf="@+id/userImageDetails"
+                android:text="Perfil: " />
+
+            <TextView
+                android:id="@+id/privateUserText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Este usuario tiene el perfil en privado"
+                android:textStyle="bold|italic"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="19sp"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileStatusTV" />
+
+            <TextView
+                android:id="@+id/currentSeasonTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/profileStatusTV"
+                app:layout_constraintTop_toBottomOf="@+id/profileStatusTV"
+                android:text="Temporada: " />
+
+            <TextView
+                android:id="@+id/competitiveText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="@+id/currentSeasonTV"
+                app:layout_constraintTop_toBottomOf="@+id/currentSeasonTV"
+                android:text="Competitivo (PC)" />
+
+            <TextView
+                android:id="@+id/noUserFoundText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="No tiene datos de PC"
+                android:textSize="19sp"
+                android:textStyle="bold|italic"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/competitiveText" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/CLRanksPC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/competitiveText">
+
+                <TextView
+                    android:id="@+id/tankTV"
+                    android:layout_marginStart="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanque"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/damageTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dps"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toStartOf="@+id/supportTV"
+                    app:layout_constraintStart_toEndOf="@+id/tankTV"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/supportTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="Soporte"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageRankTank"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tankTV"
+                    app:layout_constraintStart_toStartOf="@+id/tankTV"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV"
+                    tools:src="@drawable/gm_rank" />
+
+                <ImageView
+                    android:id="@+id/imageRankDps"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/damageTV"
+                    app:layout_constraintStart_toStartOf="@+id/damageTV"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV"
+                    tools:src="@drawable/gm_rank" />
+
+                <ImageView
+                    android:id="@+id/imageRankSupport"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/supportTV"
+                    app:layout_constraintStart_toStartOf="@+id/supportTV"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV"
+                    tools:src="@drawable/gm_rank" />
+
+                <TextView
+                    android:id="@+id/rankTextTank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankTank"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankTank"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank"
+                    tools:text="Grandmaster 5" />
+
+                <TextView
+                    android:id="@+id/rankTextDps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankDps"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankDps"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank"
+                    tools:text="Grandmaster 5" />
+
+                <TextView
+                    android:id="@+id/rankTextSupport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankSupport"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankSupport"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank"
+                    tools:text="Grandmaster 5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/competitiveTextConsole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/competitiveText"
+                app:layout_constraintTop_toBottomOf="@+id/CLRanksPC"
+                android:text="Competitivo (Consola)" />
+
+            <TextView
+                android:id="@+id/noUserFoundText_console"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="No tiene datos de Consola"
+                android:textSize="19sp"
+                android:textStyle="bold|italic"
+                android:visibility="gone"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/competitiveTextConsole" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/CLRanksConsole"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/competitiveTextConsole">
+
+                <TextView
+                    android:id="@+id/tankTV_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanque"
+                    android:layout_marginStart="30dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/damageTV_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dps"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toStartOf="@+id/supportTV_console"
+                    app:layout_constraintStart_toEndOf="@+id/tankTV_console"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/supportTV_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="Soporte"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageRankTank_console"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tankTV_console"
+                    app:layout_constraintStart_toStartOf="@+id/tankTV_console"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV_console"
+                    tools:src="@drawable/gm_rank" />
+
+                <ImageView
+                    android:id="@+id/imageRankDps_console"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/damageTV_console"
+                    app:layout_constraintStart_toStartOf="@+id/damageTV_console"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV_console"
+                    tools:src="@drawable/gm_rank" />
+
+                <ImageView
+                    android:id="@+id/imageRankSupport_console"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:layout_constraintEnd_toEndOf="@+id/supportTV_console"
+                    app:layout_constraintStart_toStartOf="@+id/supportTV_console"
+                    app:layout_constraintTop_toBottomOf="@+id/tankTV_console"
+                    tools:src="@drawable/gm_rank" />
+
+                <TextView
+                    android:id="@+id/rankTextTank_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankTank_console"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankTank_console"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank_console"
+                    tools:text="Grandmaster 5" />
+
+                <TextView
+                    android:id="@+id/rankTextDps_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankDps_console"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankDps_console"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank_console"
+                    tools:text="Grandmaster 5" />
+
+                <TextView
+                    android:id="@+id/rankTextSupport_console"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="@+id/imageRankSupport_console"
+                    app:layout_constraintStart_toStartOf="@+id/imageRankSupport_console"
+                    app:layout_constraintTop_toBottomOf="@+id/imageRankTank_console"
+                    tools:text="Grandmaster 5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
