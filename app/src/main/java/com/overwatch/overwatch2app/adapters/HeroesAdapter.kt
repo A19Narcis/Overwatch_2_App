@@ -61,11 +61,6 @@ class HeroesAdapter(private val context: Context, private val heroList: ArrayLis
         val max = 22
         val step = 2
 
-        heroName.setAutoSizeTextTypeUniformWithConfiguration(
-            min,
-            max,
-            step,
-            TypedValue.COMPLEX_UNIT_SP
-        )
+        heroName.setAutoSizeTextTypeUniformWithConfiguration(min, max, step, TypedValue.COMPLEX_UNIT_SP)
     }
 }

@@ -105,7 +105,7 @@ class MapasModosFragment : Fragment() {
                             val screenshot = jsonObject.get("screenshot").asString
                             val gamemodes: JsonArray = jsonObject.get("gamemodes").asJsonArray
                             val location = jsonObject.get("location").asString
-                            val country_code = "null"
+                            val country_code = if (jsonObject.get("country_code").isJsonNull) "OW" else jsonObject.get("country_code").asString
                             var qp = false
                             var comp = false
                             var arcade = false
