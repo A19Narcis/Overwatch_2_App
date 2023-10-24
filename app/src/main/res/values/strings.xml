@@ -20,4 +20,7 @@
     <string name="hybrid2">Hybrid</string>
     <string name="mapas_y_modos">Mapas y Modos</string>
     <string name="london1">London</string>
+    <string name="usuarios_titulo">Usuarios</string>
+    <string name="description_usuers_text">Este es el buscador de usuarios.\n\nPara encontrar un usuario tienes que poner el nombre de usuario de BattleNet con es número de ID incluio</string>
+    <string name="no_hay_usuario">No se ha encontrado ningun usuario.</string>
 </resources>
