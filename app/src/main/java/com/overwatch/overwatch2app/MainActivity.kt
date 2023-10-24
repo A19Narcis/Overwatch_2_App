@@ -2,6 +2,7 @@ package com.overwatch.overwatch2app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.overwatch.overwatch2app.databinding.ActivityMainBinding
 import com.overwatch.overwatch2app.fragments.HeroesFragment
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         binding?.bottomNavView?.setOnItemSelectedListener {
             when(it.itemId) {
