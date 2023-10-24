@@ -11,31 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="225dp"
         android:contentDescription="@string/image_desc"
+        android:src="@drawable/anubis"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck"
-        android:src="@drawable/midtown"/>
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/mapTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/king_s_row"
         android:textSize="36sp"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="@+id/mapIV"
-        app:layout_constraintTop_toTopOf="@+id/mapIV" />
+        app:layout_constraintBottom_toTopOf="@+id/locationTV"
+        app:layout_constraintEnd_toStartOf="@+id/modoMapCL1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/locationTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="London"
+        android:text="@string/london1"
         android:textColor="#039BE5"
         android:textSize="16sp"
         android:textStyle="bold|italic"
@@ -51,12 +54,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/uk"
-        android:textColor="#9E9E9E"
+        android:textColor="#EF6C00"
         android:textSize="16sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="@+id/locationTV"
         app:layout_constraintStart_toEndOf="@+id/locationTV"
-        app:layout_constraintTop_toTopOf="@+id/locationTV" />
+        app:layout_constraintTop_toTopOf="@+id/locationTV"
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/mapFlagIV"
@@ -86,6 +90,7 @@
             android:gravity="center"
             android:text="@string/hybrid"
             android:textAlignment="center"
+            android:textColor="#E57373"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/modoMapaIV"

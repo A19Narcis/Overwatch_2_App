@@ -8,8 +8,8 @@
 
     <com.santalu.diagonalimageview.DiagonalImageView
         android:id="@+id/modeMapIV3"
-        android:layout_width="120dp"
-        android:layout_height="130dp"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
         android:scaleType="centerCrop"
         android:src="@drawable/midtown"
         app:di_borderColor="@color/black"
@@ -24,11 +24,12 @@
 
     <com.santalu.diagonalimageview.DiagonalImageView
         android:id="@+id/modeMapIV2"
-        android:layout_width="120dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="90dp"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="-30dp"
         android:scaleType="centerCrop"
         android:src="@drawable/kings_row"
+        android:visibility="visible"
         app:di_borderColor="@color/black"
         app:di_borderEnabled="true"
         app:di_borderSize="2dp"
@@ -36,16 +37,17 @@
         app:di_end="top"
         app:di_start="right"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modeMapIV3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.santalu.diagonalimageview.DiagonalImageView
         android:id="@+id/modeMapIV1"
-        android:layout_width="120dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="180dp"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="-30dp"
         android:scaleType="centerCrop"
         android:src="@drawable/paraiso"
+        android:visibility="visible"
         app:di_borderColor="@color/black"
         app:di_borderEnabled="true"
         app:di_borderSize="2dp"
@@ -53,15 +55,15 @@
         app:di_end="top"
         app:di_start="right"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modeMapIV2"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />
 
     <com.santalu.diagonalimageview.DiagonalImageView
         android:id="@+id/modeMapIV0"
         android:layout_width="30dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="270dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="-30dp"
         android:scaleType="centerCrop"
         android:src="@color/light_grey"
         app:di_borderColor="@color/light_grey"
@@ -71,7 +73,7 @@
         app:di_end="top"
         app:di_start="right"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modeMapIV1"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />
 
@@ -87,13 +89,15 @@
 
         <TextView
             android:id="@+id/modeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/hybrid2"
             android:textSize="30sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/modeIV"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,7 +106,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:src="@drawable/heroes"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/modeTV"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/modeTV"

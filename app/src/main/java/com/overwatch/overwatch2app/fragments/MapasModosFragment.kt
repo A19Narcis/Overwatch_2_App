@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.JsonArray
 import com.overwatch.overwatch2app.R
-import com.overwatch.overwatch2app.adapters.HeroesAdapter
 import com.overwatch.overwatch2app.adapters.MapAdapter
 import com.overwatch.overwatch2app.adapters.ModeAdapter
 import com.overwatch.overwatch2app.api.ApiService
-import com.overwatch.overwatch2app.models.Hero.HeroList
 import com.overwatch.overwatch2app.models.Maps.MapList
 import com.overwatch.overwatch2app.models.Modes.ModeList
 import retrofit2.Call
@@ -46,7 +44,6 @@ class MapasModosFragment : Fragment() {
 
     init {
         getMapsInfo()
-        //getModesInfo()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -70,10 +67,13 @@ class MapasModosFragment : Fragment() {
         selectionMapModeGroup?.setOnCheckedChangeListener { _, checkedId: Int ->
             when (checkedId) {
                 R.id.mapasRButton -> {
-                    //runAdapterMaps(allMapsList)
+                    recyclerViewModos?.visibility = View.GONE
+                    recyclerViewMapas?.visibility = View.VISIBLE
+
                 }
                 R.id.modosRButton -> {
-                    //runAdapterModes(allModesList, allMapsList)
+                    recyclerViewMapas?.visibility = View.GONE
+                    recyclerViewModos?.visibility = View.VISIBLE
                 }
             }
         }
@@ -122,6 +122,7 @@ class MapasModosFragment : Fragment() {
                             val mapListInfo = MapList(name, screenshot, gamemodes, location, country_code, qp, comp, arcade)
                             allMapsList?.add(mapListInfo)
                         }
+                        getModesInfo()
                         // Ejecutamos el adapter para que cargue el contenido al entrar en el fragment
                         runAdapterMaps(allMapsList!!)
                     }
@@ -145,14 +146,14 @@ class MapasModosFragment : Fragment() {
             override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 if (response.isSuccessful){
                     val jsonArray = response.body()
-                    val mapsArray = jsonArray?.asJsonArray
+                    val modesArray = jsonArray?.asJsonArray
 
-                    if (mapsArray != null) {
+                    if (modesArray != null) {
 
-                        allMapsList = ArrayList()
+                        allModesList = ArrayList()
 
-                        for (map in mapsArray) {
-                            val jsonObject = map.asJsonObject
+                        for (mode in modesArray) {
+                            val jsonObject = mode.asJsonObject
 
                             val key = jsonObject.get("key").asString
                             val name = jsonObject.get("name").asString
@@ -181,7 +182,7 @@ class MapasModosFragment : Fragment() {
 
     private fun runAdapterModes(modeList: ArrayList<ModeList>?, mapList: ArrayList<MapList>?) {
         modeAdapter = ModeAdapter(requireContext(), modeList!!, mapList!!)
-        recyclerViewMapas!!.adapter = modeAdapter
+        recyclerViewModos!!.adapter = modeAdapter
     }
 
 }

@@ -16,16 +16,16 @@ import com.overwatch.overwatch2app.models.Maps.MapList
 import com.overwatch.overwatch2app.models.Modes.ModeList
 import com.santalu.diagonalimageview.DiagonalImageView
 
-private var assaultList: ArrayList<String> = ArrayList()
-private var captureList: ArrayList<String> = ArrayList()
-private var controlList: ArrayList<String> = ArrayList()
-private var deathmatchList: ArrayList<String> = ArrayList()
-private var eliminationList: ArrayList<String> = ArrayList()
-private var escortList: ArrayList<String> = ArrayList()
-private var flashpointList: ArrayList<String> = ArrayList()
-private var hybridList: ArrayList<String> = ArrayList()
-private var pushList: ArrayList<String> = ArrayList()
-private var teamDeatList: ArrayList<String> = ArrayList()
+private var assaultList: ArrayList<String>? = null
+private var captureList: ArrayList<String>? = null
+private var controlList: ArrayList<String>? = null
+private var deathmatchList: ArrayList<String>? = null
+private var eliminationList: ArrayList<String>? = null
+private var escortList: ArrayList<String>? = null
+private var flashpointList: ArrayList<String>? = null
+private var hybridList: ArrayList<String>? = null
+private var pushList: ArrayList<String>? = null
+private var teamDeatList: ArrayList<String>? = null
 
 class ModeAdapter(private val context: Context, private val modeList: ArrayList<ModeList>, private val mapList: ArrayList<MapList>):  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModeViewHolder {
@@ -46,18 +46,28 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
     }
 
     private fun prepareLists() {
+        assaultList = ArrayList()
+        captureList = ArrayList()
+        controlList = ArrayList()
+        eliminationList = ArrayList()
+        escortList = ArrayList()
+        flashpointList = ArrayList()
+        hybridList = ArrayList()
+        pushList = ArrayList()
+        teamDeatList = ArrayList()
+        deathmatchList = ArrayList()
         for (map in mapList) {
             for (game in map.gamemodes) {
-                if (game.equals("assault")) assaultList.add(map.screenshot)
-                else if (game.equals("capture-the-flag")) captureList.add(map.screenshot)
-                else if (game.equals("control")) controlList.add(map.screenshot)
-                else if (game.equals("deathmatch")) deathmatchList.add(map.screenshot)
-                else if (game.equals("elimination")) eliminationList.add(map.screenshot)
-                else if (game.equals("escort")) escortList.add(map.screenshot)
-                else if (game.equals("flashpoint")) flashpointList.add(map.screenshot)
-                else if (game.equals("hybrid")) hybridList.add(map.screenshot)
-                else if (game.equals("push")) pushList.add(map.screenshot)
-                else if (game.equals("team")) teamDeatList.add(map.screenshot)
+                if (game.asString.contains("assault")) assaultList!!.add(map.screenshot)
+                else if (game.asString.contains("capture-the-flag")) captureList!!.add(map.screenshot)
+                else if (game.asString.contains("control")) controlList!!.add(map.screenshot)
+                else if (game.asString.contains("elimination")) eliminationList!!.add(map.screenshot)
+                else if (game.asString.contains("escort")) escortList!!.add(map.screenshot)
+                else if (game.asString.contains("flashpoint")) flashpointList!!.add(map.screenshot)
+                else if (game.asString.contains("hybrid")) hybridList!!.add(map.screenshot)
+                else if (game.asString.contains("push")) pushList!!.add(map.screenshot)
+                else if (game.asString.contains("team")) teamDeatList!!.add(map.screenshot)
+                else if (game.asString.contains("deathmatch")) deathmatchList!!.add(map.screenshot)
             }
         }
     }
@@ -77,63 +87,44 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
         when {
             modeListL.icon.contains("assault") -> {
                 modeIV.setImageResource(R.drawable.assault_icon)
-                modeMapIV1.let { Glide.with(context).load(assaultList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(assaultList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(assaultList[2]).into(it) }
+                setMapsToModes(assaultList, modeMapIV1, modeMapIV2, modeMapIV3)
+
             }
             modeListL.icon.contains("capture-the-flag") -> {
                 modeIV.setImageResource(R.drawable.capture_the_flag_icon)
-                modeMapIV1.let { Glide.with(context).load(captureList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(captureList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(captureList[2]).into(it) }
+                setMapsToModes(captureList, modeMapIV1, modeMapIV2, modeMapIV3)
             }
             modeListL.icon.contains("control") -> {
                 modeIV.setImageResource(R.drawable.control_icon)
-                modeMapIV1.let { Glide.with(context).load(controlList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(controlList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(controlList[2]).into(it) }
-            }
-            modeListL.icon.contains("deathmatch") -> {
-                modeIV.setImageResource(R.drawable.deathmatch_icon)
-                modeMapIV1.let { Glide.with(context).load(deathmatchList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(deathmatchList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(deathmatchList[2]).into(it) }
-            }
-            modeListL.icon.contains("elimination") -> {
-                modeIV.setImageResource(R.drawable.elimination_icon)
-                modeMapIV1.let { Glide.with(context).load(eliminationList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(eliminationList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(eliminationList[2]).into(it) }
-            }
-            modeListL.icon.contains("escort") -> {
-                modeIV.setImageResource(R.drawable.escort_icon)
-                modeMapIV1.let { Glide.with(context).load(escortList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(escortList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(escortList[2]).into(it) }
-            }
-            modeListL.icon.contains("flashpoint") -> {
-                modeIV.setImageResource(R.drawable.flashpoint_icon)
-                modeMapIV1.let { Glide.with(context).load(flashpointList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(flashpointList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(flashpointList[2]).into(it) }
-            }
-            modeListL.icon.contains("hybrid") -> {
-                modeIV.setImageResource(R.drawable.hybrid_icon)
-                modeMapIV1.let { Glide.with(context).load(hybridList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(hybridList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(hybridList[2]).into(it) }
-            }
-            modeListL.icon.contains("push") -> {
-                modeIV.setImageResource(R.drawable.push_icon)
-                modeMapIV1.let { Glide.with(context).load(pushList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(pushList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(pushList[2]).into(it) }
+                setMapsToModes(controlList, modeMapIV1, modeMapIV2, modeMapIV3)
             }
             modeListL.icon.contains("team-deathmatch") -> {
                 modeIV.setImageResource(R.drawable.team_deathmatch_icon)
-                modeMapIV1.let { Glide.with(context).load(teamDeatList[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(teamDeatList[1]).into(it) }
-                modeMapIV3.let { Glide.with(context).load(teamDeatList[2]).into(it) }
+                setMapsToModes(teamDeatList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("deathmatch") -> {
+                modeIV.setImageResource(R.drawable.deathmatch_icon)
+                setMapsToModes(deathmatchList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("elimination") -> {
+                modeIV.setImageResource(R.drawable.elimination_icon)
+                setMapsToModes(eliminationList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("escort") -> {
+                modeIV.setImageResource(R.drawable.escort_icon)
+                setMapsToModes(escortList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("flashpoint") -> {
+                modeIV.setImageResource(R.drawable.flashpoint_icon)
+                setMapsToModes(flashpointList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("hybrid") -> {
+                modeIV.setImageResource(R.drawable.hybrid_icon)
+                setMapsToModes(hybridList, modeMapIV1, modeMapIV2, modeMapIV3)
+            }
+            modeListL.icon.contains("push") -> {
+                modeIV.setImageResource(R.drawable.push_icon)
+                setMapsToModes(pushList, modeMapIV1, modeMapIV2, modeMapIV3)
             }
         }
 
@@ -149,4 +140,33 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
             TypedValue.COMPLEX_UNIT_SP
         )
     }
+
+    private fun setMapsToModes(list: ArrayList<String>?, modeMapIV1: DiagonalImageView, modeMapIV2: DiagonalImageView, modeMapIV3: DiagonalImageView) {
+        val scale = context.resources.displayMetrics.density
+        when (list?.size) {
+            in 3..list!!.size -> {
+                modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
+                modeMapIV2.let { Glide.with(context).load(list[1]).into(it) }
+                modeMapIV1.let { Glide.with(context).load(list[2]).into(it) }
+            }
+            2 -> {
+                modeMapIV1.visibility = View.GONE
+                modeMapIV2.layoutParams.width = (150 * scale + 0.5f).toInt()
+                modeMapIV3.layoutParams.width = (150 * scale + 0.5f).toInt()
+                modeMapIV2.requestLayout()
+                modeMapIV3.requestLayout()
+                modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
+                modeMapIV2.let { Glide.with(context).load(list[1]).into(it) }
+            }
+            1 -> {
+                modeMapIV1.visibility = View.GONE
+                modeMapIV2.visibility = View.GONE
+                modeMapIV3.layoutParams.width = (270 * scale + 0.5f).toInt()
+                modeMapIV3.requestLayout()
+                modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
+            }
+        }
+    }
+
+
 }
