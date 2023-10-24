@@ -94,7 +94,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setModesToMap(gamemodes: List<JsonElement>, modoMapaTV: TextView, modoMapaIV: ImageView, modoMapaTV2: TextView, modoMapaIV2: ImageView) {
         // Ajusta el texto automaticamente dependiendo del tamaño del textView
-        val min1 = 8
+        val min1 = 14
         val max1 = 20
         val step1 = 2
 
