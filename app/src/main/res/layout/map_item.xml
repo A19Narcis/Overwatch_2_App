@@ -11,67 +11,80 @@
         android:layout_width="match_parent"
         android:layout_height="225dp"
         android:contentDescription="@string/image_desc"
-        android:src="@drawable/anubis"
         android:scaleType="fitXY"
+        android:src="@drawable/anubis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck" />
 
-    <TextView
-        android:id="@+id/mapTV"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mapNameCL"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/king_s_row"
-        android:textSize="36sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/locationTV"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/modoMapCL1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/locationTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/london1"
-        android:textColor="#039BE5"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="@+id/mapTV"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mapTV"
-        app:layout_constraintTop_toBottomOf="@+id/mapTV"
-        tools:ignore="TextContrastCheck" />
+        <TextView
+            android:id="@+id/mapTV"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/king_s_row"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/locationTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/countrycodeTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/uk"
-        android:textColor="#EF6C00"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/locationTV"
-        app:layout_constraintStart_toEndOf="@+id/locationTV"
-        app:layout_constraintTop_toTopOf="@+id/locationTV"
-        tools:ignore="TextContrastCheck" />
+        <TextView
+            android:id="@+id/locationTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/london1"
+            android:textColor="#039BE5"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/mapTV"
+            app:layout_constraintTop_toBottomOf="@+id/mapTV"
+            tools:ignore="TextContrastCheck" />
 
-    <ImageView
-        android:id="@+id/mapFlagIV"
-        android:layout_width="40dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/countrycodeTV"
-        app:layout_constraintStart_toEndOf="@+id/countrycodeTV"
-        app:layout_constraintTop_toTopOf="@+id/countrycodeTV"
-        tools:ignore="ContentDescription,ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/countrycodeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/ow"
+            android:textColor="#EF6C00"
+            android:textSize="16sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="@+id/locationTV"
+            app:layout_constraintStart_toEndOf="@+id/locationTV"
+            app:layout_constraintTop_toTopOf="@+id/locationTV"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/mapFlagIV"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/countrycodeTV"
+            app:layout_constraintStart_toEndOf="@+id/countrycodeTV"
+            app:layout_constraintTop_toTopOf="@+id/countrycodeTV"
+            tools:ignore="ContentDescription,ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/modoMapCL1"
@@ -86,10 +99,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_marginEnd="6dp"
+            android:gravity="end"
             android:text="@string/hybrid"
-            android:textAlignment="center"
             android:textColor="#E57373"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -100,8 +112,8 @@
 
         <ImageView
             android:id="@+id/modoMapaIV"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,9 +127,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:gravity="end"
             android:text="@string/hybrid"
-            android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="gone"

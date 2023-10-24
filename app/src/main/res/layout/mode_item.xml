@@ -103,14 +103,14 @@
 
         <ImageView
             android:id="@+id/modeIV"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/heroes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/modeTV"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="@+id/modeTV"
             app:layout_constraintTop_toBottomOf="@+id/modeTV"
             tools:ignore="ContentDescription,ImageContrastCheck" />

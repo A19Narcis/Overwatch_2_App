@@ -88,7 +88,6 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
             modeListL.icon.contains("assault") -> {
                 modeIV.setImageResource(R.drawable.assault_icon)
                 setMapsToModes(assaultList, modeMapIV1, modeMapIV2, modeMapIV3)
-
             }
             modeListL.icon.contains("capture-the-flag") -> {
                 modeIV.setImageResource(R.drawable.capture_the_flag_icon)
@@ -133,40 +132,44 @@ class ModeAdapter(private val context: Context, private val modeList: ArrayList<
         val max = 30
         val step = 2
 
-        modeTV.setAutoSizeTextTypeUniformWithConfiguration(
-            min,
-            max,
-            step,
-            TypedValue.COMPLEX_UNIT_SP
-        )
+        modeTV.setAutoSizeTextTypeUniformWithConfiguration(min, max, step, TypedValue.COMPLEX_UNIT_SP)
     }
 
     private fun setMapsToModes(list: ArrayList<String>?, modeMapIV1: DiagonalImageView, modeMapIV2: DiagonalImageView, modeMapIV3: DiagonalImageView) {
         val scale = context.resources.displayMetrics.density
         when (list?.size) {
             in 3..list!!.size -> {
-                modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(list[1]).into(it) }
-                modeMapIV1.let { Glide.with(context).load(list[2]).into(it) }
+                val listaRandom = list.shuffled().take(3)
+                modeMapIV1.visibility = View.VISIBLE
+                modeMapIV2.visibility = View.VISIBLE
+                modeMapIV1.layoutParams.width = (110 * scale + 0.5f).toInt()
+                modeMapIV2.layoutParams.width = (110 * scale + 0.5f).toInt()
+                modeMapIV3.layoutParams.width = (110 * scale + 0.5f).toInt()
+                modeMapIV3.let { Glide.with(context).load(listaRandom[0]).into(it) }
+                modeMapIV2.let { Glide.with(context).load(listaRandom[1]).into(it) }
+                modeMapIV1.let { Glide.with(context).load(listaRandom[2]).into(it) }
             }
             2 -> {
+                val listaRandom = list.shuffled().take(3)
                 modeMapIV1.visibility = View.GONE
+                modeMapIV2.visibility = View.VISIBLE
+                modeMapIV1.layoutParams.width = (110 * scale + 0.5f).toInt()
                 modeMapIV2.layoutParams.width = (150 * scale + 0.5f).toInt()
                 modeMapIV3.layoutParams.width = (150 * scale + 0.5f).toInt()
                 modeMapIV2.requestLayout()
                 modeMapIV3.requestLayout()
-                modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
-                modeMapIV2.let { Glide.with(context).load(list[1]).into(it) }
+                modeMapIV3.let { Glide.with(context).load(listaRandom[0]).into(it) }
+                modeMapIV2.let { Glide.with(context).load(listaRandom[1]).into(it) }
             }
             1 -> {
                 modeMapIV1.visibility = View.GONE
                 modeMapIV2.visibility = View.GONE
+                modeMapIV1.layoutParams.width = (110 * scale + 0.5f).toInt()
+                modeMapIV2.layoutParams.width = (110 * scale + 0.5f).toInt()
                 modeMapIV3.layoutParams.width = (270 * scale + 0.5f).toInt()
                 modeMapIV3.requestLayout()
                 modeMapIV3.let { Glide.with(context).load(list[0]).into(it) }
             }
         }
     }
-
-
 }
