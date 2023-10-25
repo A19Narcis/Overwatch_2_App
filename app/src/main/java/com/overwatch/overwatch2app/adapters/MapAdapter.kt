@@ -77,7 +77,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
         }
 
         //Flag
-        setFlagsToMap(mapListL.country_code, mapFlagIV)
+        setFlagsToMap(countrycodeTV.text.toString(), mapFlagIV)
 
         //Gamemodes
         val listM = mapListL.gamemodes.toList()
@@ -171,7 +171,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             "US" to R.drawable.united_states_flag,
             "AU" to R.drawable.australia_flag,
             "CU" to R.drawable.cuba_flag,
-            "NI" to R.drawable.nigeria_flag,
+            "NI" to R.drawable.numbani_flag,
             "UK" to R.drawable.united_kingdom_flag,
             "BR" to R.drawable.brazil_flag,
             "PT" to R.drawable.portugal_flag,
