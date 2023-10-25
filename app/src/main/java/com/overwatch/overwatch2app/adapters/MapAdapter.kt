@@ -115,7 +115,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             setIconsMode(cleanText1, modoMapaIV)
 
             val cleanText2 = cleanText(gamemodes[1].toString())
-            val upperText2 = uppercaseText(cleanText1)
+            val upperText2 = uppercaseText(cleanText2)
 
             modoMapaTV2.text = upperText2.replace("-", " ")
             setIconsMode(cleanText2, modoMapaIV2)
@@ -205,38 +205,5 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
         modeResource?.let {
             modoMapaIV.setImageResource(it)
         }
-        /*
-        when {
-            modeClean.contains("assault") -> {
-                modoMapaIV.setImageResource(R.drawable.assault_icon)
-            }
-            modeClean.contains("capture-the-flag") -> {
-                modoMapaIV.setImageResource(R.drawable.capture_the_flag_icon)
-            }
-            modeClean.contains("control") -> {
-                modoMapaIV.setImageResource(R.drawable.control_icon)
-            }
-            modeClean.contains("team-deathmatch") -> {
-                modoMapaIV.setImageResource(R.drawable.team_deathmatch_icon)
-            }
-            modeClean.contains("deathmatch") -> {
-                modoMapaIV.setImageResource(R.drawable.deathmatch_icon)
-            }
-            modeClean.contains("elimination") -> {
-                modoMapaIV.setImageResource(R.drawable.elimination_icon)
-            }
-            modeClean.contains("escort") -> {
-                modoMapaIV.setImageResource(R.drawable.escort_icon)
-            }
-            modeClean.contains("flashpoint") -> {
-                modoMapaIV.setImageResource(R.drawable.flashpoint_icon)
-            }
-            modeClean.contains("hybrid") -> {
-                modoMapaIV.setImageResource(R.drawable.hybrid_icon)
-            }
-            modeClean.contains("push") -> {
-                modoMapaIV.setImageResource(R.drawable.push_icon)
-            }
-        }*/
     }
 }
