@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ImageContrastCheck"
-                tools:src="@drawable/search" />
+                tools:src="@drawable/search2" />
 
             <ImageView
                 android:id="@+id/userNameCardDetails"
@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toEndOf="@id/userImageDetails"
                 app:layout_constraintTop_toTopOf="@id/userImageDetails"
                 tools:ignore="ImageContrastCheck"
-                tools:src="@drawable/search" />
+                tools:src="@drawable/search2" />
 
             <TextView
                 android:id="@+id/profileStatusTV"

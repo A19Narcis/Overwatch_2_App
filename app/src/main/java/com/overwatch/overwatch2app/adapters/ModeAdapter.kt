@@ -12,8 +12,8 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.overwatch.overwatch2app.R
-import com.overwatch.overwatch2app.models.Maps.MapList
-import com.overwatch.overwatch2app.models.Modes.ModeList
+import com.overwatch.overwatch2app.models.Map.MapList
+import com.overwatch.overwatch2app.models.Mode.ModeList
 import com.santalu.diagonalimageview.DiagonalImageView
 
 private var assaultList: ArrayList<String>? = null

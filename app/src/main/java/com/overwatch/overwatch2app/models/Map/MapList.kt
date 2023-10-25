@@ -1,6 +1,5 @@
-package com.overwatch.overwatch2app.models.Maps
+package com.overwatch.overwatch2app.models.Map
 
-import android.widget.TextView
 import com.google.gson.JsonArray
 
 data class MapList(

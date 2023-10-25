@@ -1,4 +1,4 @@
-package com.overwatch.overwatch2app.models.Modes
+package com.overwatch.overwatch2app.models.Mode
 
 data class ModeList(
     val key: String,

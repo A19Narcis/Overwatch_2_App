@@ -37,6 +37,7 @@
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/king_s_row"
             android:textSize="36sp"
             android:textStyle="bold|italic"
@@ -77,15 +78,14 @@
 
         <ImageView
             android:id="@+id/mapFlagIV"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:src="@drawable/australia_flag"
             app:layout_constraintEnd_toEndOf="@+id/locationTV"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/locationTV"
             app:layout_constraintTop_toBottomOf="@+id/locationTV"
-            tools:ignore="ContentDescription,ImageContrastCheck"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

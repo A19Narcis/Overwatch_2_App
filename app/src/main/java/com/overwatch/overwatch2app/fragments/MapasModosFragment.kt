@@ -16,8 +16,8 @@ import com.overwatch.overwatch2app.R
 import com.overwatch.overwatch2app.adapters.MapAdapter
 import com.overwatch.overwatch2app.adapters.ModeAdapter
 import com.overwatch.overwatch2app.api.ApiService
-import com.overwatch.overwatch2app.models.Maps.MapList
-import com.overwatch.overwatch2app.models.Modes.ModeList
+import com.overwatch.overwatch2app.models.Map.MapList
+import com.overwatch.overwatch2app.models.Mode.ModeList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -109,7 +109,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/heroes"
+            android:src="@drawable/heroes2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/modeTV"
             app:layout_constraintHorizontal_bias="0.02"

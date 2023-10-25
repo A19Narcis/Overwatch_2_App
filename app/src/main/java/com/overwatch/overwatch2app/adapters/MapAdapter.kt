@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.JsonElement
 import com.overwatch.overwatch2app.R
-import com.overwatch.overwatch2app.models.Maps.MapList
+import com.overwatch.overwatch2app.models.Map.MapList
 import java.util.Locale
 
 class MapAdapter(private val context: Context, private val mapList: ArrayList<MapList>):  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -43,6 +43,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
         val mapTV: TextView = holder.itemView.findViewById(R.id.mapTV)
         val locatioTV: TextView = holder.itemView.findViewById(R.id.locationTV)
         val countrycodeTV: TextView = holder.itemView.findViewById(R.id.countrycodeTV)
+        val mapFlagIV: ImageView = holder.itemView.findViewById(R.id.mapFlagIV)
         val modoMapaTV: TextView = holder.itemView.findViewById(R.id.modoMapaTV)
         val modoMapaIV: ImageView = holder.itemView.findViewById(R.id.modoMapaIV)
         val modoMapaTV2: TextView = holder.itemView.findViewById(R.id.modoMapaTV2)
@@ -75,10 +76,14 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             mapListL.country_code
         }
 
-        val listM = mapListL.gamemodes.toList()
+        //Flag
+        setFlagsToMap(mapListL.country_code, mapFlagIV)
 
+        //Gamemodes
+        val listM = mapListL.gamemodes.toList()
         setModesToMap(listM, modoMapaTV, modoMapaIV, modoMapaTV2, modoMapaIV2)
 
+        //QP, Comp, Arcade
         qpIV.setImageResource(R.drawable.assault_icon)
         compIV.setImageResource(R.drawable.assault_icon)
         arcadeIV.setImageResource(R.drawable.assault_icon)
@@ -91,6 +96,7 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
         mapTV.setAutoSizeTextTypeUniformWithConfiguration(min1, max1, step1, TypedValue.COMPLEX_UNIT_SP)
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setModesToMap(gamemodes: List<JsonElement>, modoMapaTV: TextView, modoMapaIV: ImageView, modoMapaTV2: TextView, modoMapaIV2: ImageView) {
         // Ajusta el texto automaticamente dependiendo del tamaño del textView
@@ -102,21 +108,17 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             modoMapaTV2.visibility = View.VISIBLE
             modoMapaIV2.visibility = View.VISIBLE
 
-            val gameString1 = gamemodes.get(0).toString()
-            val modeClean1 = gameString1.replace("\"", "")
-            val mode1 = modeClean1
-                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            val cleanText1 = cleanText(gamemodes[0].toString())
+            val upperText1 = uppercaseText(cleanText1)
 
-            modoMapaTV.text = mode1.replace("-", " ")
-            setIconsMode(modeClean1, modoMapaIV)
+            modoMapaTV.text = upperText1.replace("-", " ")
+            setIconsMode(cleanText1, modoMapaIV)
 
-            val gameString2 = gamemodes.get(1).toString()
-            val modeClean2 = gameString2.replace("\"", "")
-            val mode2 = modeClean2
-                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            val cleanText2 = cleanText(gamemodes[1].toString())
+            val upperText2 = uppercaseText(cleanText1)
 
-            modoMapaTV2.text = mode2.replace("-", " ")
-            setIconsMode(modeClean2, modoMapaIV2)
+            modoMapaTV2.text = upperText2.replace("-", " ")
+            setIconsMode(cleanText2, modoMapaIV2)
 
             modoMapaTV.setAutoSizeTextTypeUniformWithConfiguration(min1, max1, step1, TypedValue.COMPLEX_UNIT_SP)
             modoMapaTV2.setAutoSizeTextTypeUniformWithConfiguration(min1, max1, step1, TypedValue.COMPLEX_UNIT_SP)
@@ -125,19 +127,85 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             modoMapaTV2.visibility = View.GONE
             modoMapaIV2.visibility = View.GONE
 
-            val gameString1 = gamemodes.get(0).toString()
-            val modeClean1 = gameString1.replace("\"", "")
-            val mode1 = modeClean1
-                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            val cleanText1 = cleanText(gamemodes[0].toString())
+            val upperText1 = uppercaseText(cleanText1)
 
-            modoMapaTV.text = mode1.replace("-", " ")
-            setIconsMode(modeClean1, modoMapaIV)
+            modoMapaTV.text = upperText1.replace("-", " ")
+            setIconsMode(cleanText1, modoMapaIV)
 
             modoMapaTV.setAutoSizeTextTypeUniformWithConfiguration(min1, max1, step1, TypedValue.COMPLEX_UNIT_SP)
         }
     }
 
+    private fun cleanText(gamemode: String): String {
+        val modeClean1 = gamemode.replace("\"", "")
+        return modeClean1
+    }
+
+    private fun uppercaseText(cleanText: String): String {
+        val upperText = cleanText.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        return upperText
+    }
+
+    private fun setFlagsToMap(countryCode: String, mapFlagIV: ImageView) {
+
+        val flagResourceMap = mapOf(
+            "JP" to R.drawable.japan_flag,
+            "OW" to R.drawable.overwatch_flag,
+            "AQ" to R.drawable.overwatch_flag,
+            "GI" to R.drawable.overwatch_flag,
+            "FR" to R.drawable.france_flag,
+            "EG" to R.drawable.egypt_flag,
+            "RU" to R.drawable.russia_flag,
+            "TH" to R.drawable.thailand_flag,
+            "KR" to R.drawable.south_korea_flag,
+            "NP" to R.drawable.nepal_flag,
+            "GR" to R.drawable.greece_flag,
+            "IQ" to R.drawable.iraq_flag,
+            "CN" to R.drawable.china_flag,
+            "IT" to R.drawable.italy_flag,
+            "JO" to R.drawable.jordan_flag,
+            "DE" to R.drawable.germany_flag,
+            "MX" to R.drawable.mexico_flag,
+            "MC" to R.drawable.monaco_flag,
+            "US" to R.drawable.united_states_flag,
+            "AU" to R.drawable.australia_flag,
+            "CU" to R.drawable.cuba_flag,
+            "NI" to R.drawable.nigeria_flag,
+            "UK" to R.drawable.united_kingdom_flag,
+            "BR" to R.drawable.brazil_flag,
+            "PT" to R.drawable.portugal_flag,
+            "CA" to R.drawable.canada_flag,
+            "IN" to R.drawable.india_flag,
+            "WS" to R.drawable.samoa_flag
+        )
+
+        val flagResource = flagResourceMap[countryCode]
+        flagResource?.let {
+            mapFlagIV.setImageResource(it)
+        }
+    }
+
     private fun setIconsMode(modeClean: String, modoMapaIV: ImageView) {
+
+        val modeResourceMap = mapOf(
+            "assault" to R.drawable.assault_icon,
+            "capture-the-flag" to R.drawable.capture_the_flag_icon,
+            "control" to R.drawable.control_icon,
+            "team-deathmatch" to R.drawable.team_deathmatch_icon,
+            "deathmatch" to R.drawable.deathmatch_icon,
+            "elimination" to R.drawable.elimination_icon,
+            "escort" to R.drawable.escort_icon,
+            "flashpoint" to R.drawable.flashpoint_icon,
+            "hybrid" to R.drawable.hybrid_icon,
+            "push" to R.drawable.push_icon
+        )
+
+        val modeResource = modeResourceMap[modeClean]
+        modeResource?.let {
+            modoMapaIV.setImageResource(it)
+        }
+        /*
         when {
             modeClean.contains("assault") -> {
                 modoMapaIV.setImageResource(R.drawable.assault_icon)
@@ -169,6 +237,6 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
             modeClean.contains("push") -> {
                 modoMapaIV.setImageResource(R.drawable.push_icon)
             }
-        }
+        }*/
     }
 }
