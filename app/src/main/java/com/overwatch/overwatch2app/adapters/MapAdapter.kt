@@ -138,13 +138,11 @@ class MapAdapter(private val context: Context, private val mapList: ArrayList<Ma
     }
 
     private fun cleanText(gamemode: String): String {
-        val modeClean1 = gamemode.replace("\"", "")
-        return modeClean1
+        return gamemode.replace("\"", "")
     }
 
     private fun uppercaseText(cleanText: String): String {
-        val upperText = cleanText.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-        return upperText
+        return cleanText.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
     private fun setFlagsToMap(countryCode: String, mapFlagIV: ImageView) {

@@ -17,8 +17,8 @@ interface ApiService {
     fun getInfoHeroes(): Call<JsonArray>
 
     //Get un hero
-    @GET("heroes/{hero_key}/")
-    fun getInfoOneHero(@Path("heroKey") heroKey: String): Call<JsonObject>
+    //@GET("heroes/{hero_key}/")
+    //fun getInfoOneHero(@Path("heroKey") heroKey: String): Call<JsonObject>
 
     //Get mapas
     @GET("maps/")

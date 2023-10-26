@@ -1,13 +1,9 @@
 package com.overwatch.overwatch2app
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.google.gson.JsonObject
 import com.overwatch.overwatch2app.databinding.ActivityPerfilDetailsBinding
 import org.json.JSONObject
 import android.text.Spannable
@@ -60,7 +56,7 @@ class PerfilDetails : AppCompatActivity() {
             val compPcJsonObject = compJsonObject.optJSONObject("pc")
             val compConsoleJsonObject = compJsonObject.optJSONObject("console")
 
-            val privacyTextSeason = compPcJsonObject.get("season").toString()
+            val privacyTextSeason = compPcJsonObject?.get("season").toString()
             val spannableStringSeason = SpannableString(privacyTextSeason)
             spannableStringSeason.setSpan(StyleSpan(android.graphics.Typeface.BOLD), 0, privacyTextSeason.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             binding?.currentSeasonTV?.append(spannableStringSeason)
@@ -108,8 +104,5 @@ class PerfilDetails : AppCompatActivity() {
                 binding?.noUserFoundTextConsole?.visibility = View.VISIBLE
             }
         }
-
-
-
     }
 }
